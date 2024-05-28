@@ -1,0 +1,20 @@
+### Registration
+POST localhost:8080/auth/registration
+Content-Type: application/json
+
+{
+  "name": "Di",
+  "surname": "Zero",
+  "email": "20041017i@gmail.com",
+  "password": "20020102tT",
+  "phone": "+998994123320"
+}
+
+
+
+### Get all by lang
+GET localhost:8080/region/lang
+Accept-Language: EN
+
+### Delete
+DELETE localhost:8080/region/delete/33

@@ -21,7 +21,7 @@ public class ArticleTypeEntity {
     @Column(name = "name_en")
     private String name_en;
     @Column(name = "visible")
-    private boolean visible = true;
+    private Boolean visible = Boolean.TRUE;
     @Column(name = "created_date")
     private LocalDateTime createdDate = LocalDateTime.now();
 }

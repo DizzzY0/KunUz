@@ -1,4 +1,4 @@
-package com.company.kunuz.repository;
+package com.company.kunuz.Repository;
 
 import com.company.kunuz.Entity.CategoryEntity;
 import org.springframework.data.repository.CrudRepository;

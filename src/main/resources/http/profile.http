@@ -1,0 +1,32 @@
+### Create region
+POST localhost:8080/profile/create
+Content-Type: application/json
+
+{
+  "name": "Di",
+  "surname": "Zero",
+  "email": "20041017i@gmail.com",
+  "phone": "+998994123320",
+  "password": "20020102tT",
+  "role": "ROLE_ADMIN"
+}
+
+### Get all
+GET localhost:8080/profile/all
+
+### update profile
+PUT localhost:8080/profile/update/153
+Content-Type: application/json
+
+{
+  "name": "Dizzy",
+  "surname": "Say",
+  "email": "20041017ii@gmail.com",
+  "phone": "+998336041017",
+  "password": "20020102tT",
+  "role": "ROLE_MODERATOR",
+  "photo_id": "77"
+}
+
+### delete profile by id
+DELETE localhost:8080/profile/delete/153
