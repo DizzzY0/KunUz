@@ -1,6 +1,9 @@
 package com.company.kunuz.Service;
 
 
+import com.company.kunuz.Entity.SmsHistoryEntity;
+import com.company.kunuz.Exception.AppBadException;
+import com.company.kunuz.Repository.SmsHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

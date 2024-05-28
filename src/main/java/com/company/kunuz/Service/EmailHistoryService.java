@@ -1,10 +1,14 @@
 package com.company.kunuz.Service;
 
+import com.company.kunuz.Entity.EmailHistoryEntity;
+import com.company.kunuz.Exception.AppBadException;
+import com.company.kunuz.Repository.EmailHistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+
 
 @Service
 public class EmailHistoryService {
