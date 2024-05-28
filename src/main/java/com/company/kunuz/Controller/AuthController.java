@@ -1,5 +1,6 @@
 package com.company.kunuz.Controller;
 
+import com.company.kunuz.DTO.Auth.LoginDTO;
 import com.company.kunuz.DTO.Auth.RegistrationDTO;
 import com.company.kunuz.Service.AuthService;
 import jakarta.validation.Valid;
@@ -14,15 +15,43 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    @PostMapping("/registration")
-    public ResponseEntity<String> registration(@Valid @RequestBody RegistrationDTO dto) {
-        String body = authService.registration(dto);
+    @PostMapping("/registrationByPhone")
+    public ResponseEntity<String> registrationByPhone(@Valid @RequestBody RegistrationDTO dto) {
+        String body = authService.registrationByPhone(dto);
+        return ResponseEntity.ok().body(body);
+    }
+    @GetMapping("/verificationByPhone/{userId}")
+    public ResponseEntity<String> verificationByPhone(@PathVariable("userId") Integer userId) {
+        String body = authService.authorizationVerificationByPhone(userId);
         return ResponseEntity.ok().body(body);
     }
 
-    @GetMapping("/verification/{userId}")
-    public ResponseEntity<String> verification(@PathVariable("userId") Integer userId) {
-        String body = authService.authorizationVerification(userId);
+    @GetMapping("/registrationByEmail/resend/{email}")
+    public ResponseEntity<String> registrationResendByEmail(@PathVariable("email") String email) {
+        String body = authService.registrationResendByEmail(email);
+        return ResponseEntity.ok().body(body);
+    }
+
+    @GetMapping("/registrationByPhone/resend/{phone}")
+    public ResponseEntity<String> registrationResendByPhone(@PathVariable("phone") String phone) {
+        String body = authService.registrationResendByPhone(phone);
+        return ResponseEntity.ok().body(body);
+    }
+
+    @PostMapping("/registrationByEmail")
+    public ResponseEntity<String> registrationByEmail(@Valid @RequestBody RegistrationDTO dto) {
+        String body = authService.registrationByEmail(dto);
+        return ResponseEntity.ok().body(body);
+    }
+    @GetMapping("/verificationByEmail/{userId}")
+    public ResponseEntity<String> verificationByEmail(@PathVariable("userId") Integer userId) {
+        String body = authService.authorizationVerificationByEmail(userId);
+        return ResponseEntity.ok().body(body);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Boolean> registrationByEmail(@Valid @RequestBody LoginDTO dto) {
+        Boolean body = authService.login(dto);
         return ResponseEntity.ok().body(body);
     }
 
