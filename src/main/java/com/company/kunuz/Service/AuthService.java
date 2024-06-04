@@ -3,11 +3,13 @@ package com.company.kunuz.Service;
 
 import com.company.kunuz.DTO.Auth.LoginDTO;
 import com.company.kunuz.DTO.Auth.RegistrationDTO;
+import com.company.kunuz.DTO.Profile.ProfileDTO;
 import com.company.kunuz.Entity.ProfileEntity;
 import com.company.kunuz.Enums.ProfileRole;
 import com.company.kunuz.Enums.ProfileStatus;
 import com.company.kunuz.Exception.AppBadException;
 import com.company.kunuz.Repository.ProfileRepository;
+import com.company.kunuz.Util.JWTUtil;
 import com.company.kunuz.Util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -214,7 +216,7 @@ public class AuthService {
         return "To complete your registration please enter the code.";
     }
 
-    public Boolean login(LoginDTO dto) {
+    public ProfileDTO login(LoginDTO dto) {
         Optional<ProfileEntity> dto1 = profileRepository.findByEmailAndPasswordAndVisibleIsTrue(dto.getEmail(),MD5Util.getMD5(dto.getPassword()));
         if (dto1.isEmpty()) {
             throw new AppBadException("Email or password incorrect");
@@ -222,7 +224,17 @@ public class AuthService {
         if (dto1.get().getStatus() != ProfileStatus.ACTIVE) {
             throw new AppBadException("Profile is not active");
         }
+        ProfileEntity entity = dto1.get();
+        ProfileDTO dto2 = new ProfileDTO();
+        dto2.setName(entity.getName());
+        dto2.setSurname(entity.getSurname());
+        dto2.setPhoto_id(entity.getPhotoId());
+        dto2.setEmail(entity.getEmail());
+        dto2.setPassword(MD5Util.getMD5(entity.getPassword()));
+        dto2.setStatus(entity.getStatus());
 
-        return true;
+        dto2.setJwt(JWTUtil.encode(entity.getId(), entity.getRole(), entity.getEmail()));
+
+        return dto2;
     }
 }

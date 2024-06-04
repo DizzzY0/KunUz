@@ -2,7 +2,9 @@ package com.company.kunuz.Controller;
 
 import com.company.kunuz.DTO.Profile.ProfileCreateDTO;
 import com.company.kunuz.DTO.Profile.ProfileDTO;
+import com.company.kunuz.DTO.Profile.ProfileUpdateDTO;
 import com.company.kunuz.Service.ProfileService;
+import com.company.kunuz.Util.SecurityUtil;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +21,9 @@ public class ProfileController {
 
     @PostMapping("/create")
     public ResponseEntity<ProfileDTO> create(@Valid @RequestBody ProfileCreateDTO profile) {
+//        JwtDTO jwtDTO = HttpRequestUtil.getJwtDTO(request, ProfileRole.ROLE_ADMIN);
         ProfileDTO response = profileService.create(profile);
+
         return ResponseEntity.ok().body(response);
     }
 
@@ -29,9 +33,11 @@ public class ProfileController {
         return ResponseEntity.ok().body(response);
     }
 
-    @PutMapping(value = "/update/{id}")
-    public ResponseEntity<ProfileDTO> update(@PathVariable Integer id, @RequestBody ProfileCreateDTO profileCreateDTO) {
-        ProfileDTO response = profileService.update(id, profileCreateDTO);
+    @PutMapping(value = "/update")
+    public ResponseEntity<ProfileDTO> update(@Valid @RequestBody ProfileUpdateDTO updateDTO,
+                                             @RequestHeader("Authorization") String token) {
+
+        ProfileDTO response = profileService.update(SecurityUtil.getJwtDTO(token).getId(), updateDTO);
         return ResponseEntity.ok(response);
     }
 

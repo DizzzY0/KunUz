@@ -9,7 +9,7 @@ import lombok.Setter;
 public class LoginDTO {
     @NotBlank(message = "email not found")
     private String email;
-    @NotBlank(message = "passord not found")
+    @NotBlank(message = "password not found")
     private String password;
 
 }

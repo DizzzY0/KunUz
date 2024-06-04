@@ -2,9 +2,11 @@ package com.company.kunuz.Service;
 
 import com.company.kunuz.DTO.Profile.ProfileCreateDTO;
 import com.company.kunuz.DTO.Profile.ProfileDTO;
+import com.company.kunuz.DTO.Profile.ProfileUpdateDTO;
 import com.company.kunuz.Entity.ProfileEntity;
 import com.company.kunuz.Exception.AppBadException;
 import com.company.kunuz.Repository.ProfileRepository;
+import com.company.kunuz.Util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,32 +21,25 @@ public class ProfileService {
     public ProfileDTO create(ProfileCreateDTO dto) {
         ProfileEntity entity = new ProfileEntity();
 
-
         entity.setName(dto.getName());
         entity.setSurname(dto.getSurname());
         entity.setEmail(dto.getEmail());
         entity.setPhone(dto.getPhone());
-        entity.setPassword(dto.getPassword());
-//        entity.setPhotoId(dto.getPhoto_id());
+        entity.setPassword(MD5Util.getMD5(dto.getPassword()));
 
         profileRepository.save(entity);
         return toDTO(entity);
     }
 
-    public ProfileDTO update(Integer id, ProfileCreateDTO dto) {
-
+    public ProfileDTO update(Integer id, ProfileUpdateDTO dto) {
 
 
         ProfileEntity entity = new ProfileEntity();
 
-        entity=get(id);
+        entity = get(id);
 
         entity.setName(dto.getName());
         entity.setSurname(dto.getSurname());
-        entity.setEmail(dto.getEmail());
-        entity.setPhone(dto.getPhone());
-        entity.setPassword(dto.getPassword());
-
 
 
         profileRepository.save(entity);

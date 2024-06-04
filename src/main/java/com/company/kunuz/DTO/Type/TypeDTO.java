@@ -1,20 +1,22 @@
-package com.company.kunuz.DTO;
+package com.company.kunuz.DTO.Type;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
-public class ArticleTypeDTO {
+public class TypeDTO {
     private Integer id;
-    private String name_uz;
-    private String name_ru;
-    private String name_en;
-    private boolean visible;
+    private Integer orderNumber;
+    private String nameUz;
+    private String nameRu;
+    private String nameEn;
+    private String name;
+    private Boolean visible;
     private LocalDateTime createdDate;
 }

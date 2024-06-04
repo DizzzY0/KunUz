@@ -2,9 +2,9 @@ package com.company.kunuz.Controller;
 
 import com.company.kunuz.DTO.Auth.LoginDTO;
 import com.company.kunuz.DTO.Auth.RegistrationDTO;
+import com.company.kunuz.DTO.Profile.ProfileDTO;
 import com.company.kunuz.Service.AuthService;
 import jakarta.validation.Valid;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -50,8 +50,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Boolean> registrationByEmail(@Valid @RequestBody LoginDTO dto) {
-        Boolean body = authService.login(dto);
+    public ResponseEntity<ProfileDTO> registrationByEmail(@Valid @RequestBody LoginDTO dto) {
+        ProfileDTO body = authService.login(dto);
         return ResponseEntity.ok().body(body);
     }
 

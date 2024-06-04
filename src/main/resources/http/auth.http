@@ -18,3 +18,14 @@ Accept-Language: EN
 
 ### Delete
 DELETE localhost:8080/region/delete/33
+
+
+### Login
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "email": "20041017i@gmail.com",
+  "password": "20020102tT"
+}
+

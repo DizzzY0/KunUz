@@ -15,17 +15,13 @@ Content-Type: application/json
 GET localhost:8080/profile/all
 
 ### update profile
-PUT localhost:8080/profile/update/153
+PUT localhost:8080/profile/update
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MTY5MTM1MzAsImlkIjoxNSwicm9sZSI6IlJPTEVfVVNFUiIsImV4cCI6MTcxNjk5OTkzMCwiaXNzIjoiS3VuVXpUZXN0In0.MGFeAnyB6m9ExSdDDjCPZkfilYhwSzU-_xUHLNv6BvR7krDzxkVEWj94rzwypfSxYunvDLnG67hkMIMoRdGfCQ
 
 {
   "name": "Dizzy",
-  "surname": "Say",
-  "email": "20041017ii@gmail.com",
-  "phone": "+998336041017",
-  "password": "20020102tT",
-  "role": "ROLE_MODERATOR",
-  "photo_id": "77"
+  "surname": "Say"
 }
 
 ### delete profile by id
