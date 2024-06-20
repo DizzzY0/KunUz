@@ -129,4 +129,19 @@ public class RegionService {
     }
 
 
+
+    public RegionDTO getRegion(Integer id, Language lang) {
+        RegionEntity region = get(id);
+        RegionDTO dto = new RegionDTO();
+        dto.setId(region.getId());
+        switch (lang) {
+            case uz -> dto.setName(region.getNameUz());
+            case ru -> dto.setName(region.getNameRu());
+            default -> dto.setName(region.getNameEn());
+        }
+        return dto;
+    }
+
+
+
 }

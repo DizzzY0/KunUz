@@ -34,8 +34,6 @@ public class CategoryService {
     }
 
 
-
-
     //////////////////////////GET ALL/////////////////////////
     public List<CategoryDTO> getAll() {
         Iterable<CategoryEntity> categories = categoryRepository.findAll();
@@ -46,8 +44,6 @@ public class CategoryService {
         }
         return list;
     }
-
-
 
 
     //////////////////////////GET ALL BY LANG/////////////////////////
@@ -68,10 +64,6 @@ public class CategoryService {
     }
 
 
-
-
-
-
     //////////////////////////GET ALL BY LANG 2/////////////////////////
     public List<CategoryDTO> getAllByLang2(Language lang) {
         List<CategoryMapper> mapperList = categoryRepository.findAll(lang.name());
@@ -84,8 +76,6 @@ public class CategoryService {
         }
         return dtoList;
     }
-
-
 
 
     //////////////////////////GET BY ID/////////////////////////
@@ -102,7 +92,6 @@ public class CategoryService {
     }
 
 
-
     //////////////////////////UPDATE/////////////////////////
     public Boolean update(Integer id, CategoryCreateDTO dto) {
         CategoryEntity entity = get(id);
@@ -115,18 +104,11 @@ public class CategoryService {
     }
 
 
-
-
-
-
     //////////////////////////DELETE/////////////////////////
     public Boolean delete(Integer id) {
         categoryRepository.deleteById(id);
         return true;
     }
-
-
-
 
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -142,8 +124,21 @@ public class CategoryService {
     }
 
 
-
     public CategoryEntity get(Integer id) {
         return categoryRepository.findById(id).orElseThrow(() -> new AppBadException("Category not found"));
     }
+
+
+    public CategoryDTO getCategory(Integer id, Language lang) {
+        CategoryEntity entity = get(id);
+        CategoryDTO dto = new CategoryDTO();
+        dto.setId(entity.getId());
+        switch (lang) {
+            case uz -> dto.setName(entity.getNameUz());
+            case ru -> dto.setName(entity.getNameRu());
+            default -> dto.setName(entity.getNameEn());
+        }
+        return dto;
+    }
+
 }
